@@ -16,6 +16,8 @@ const app = express();
 
 const port = 3000;
 
+const postsRouter = require('./routers/posts.js');
+
 app.use(express.static('public'));
 
 app.get("/", (req, res) => {
@@ -34,40 +36,7 @@ app.get("/", (req, res) => {
     )
 });
 
-app.get("/bacheca", (req, res) => {
-
-
-    const post = [
-        {
-            titolo: "Ciambellone",
-            contenuto: "Il ciambellone è un dolce soffice e genuino, perfetto per la colazione o la merenda. Preparato con ingredienti semplici come uova, farina, zucchero e latte, può essere arricchito con vaniglia, limone o cacao.",
-            image: "img/ciambellone.jpeg",
-            tags: ["dolce", "colazione", "ciambellone", "soffice", "tradizione"]
-        }, {
-            titolo: "Cracker Barbabietola",
-            contenuto: "I cracker alla barbabietola sono uno snack croccante e salutare, dal colore vivace e dal gusto leggermente dolce. Ottimi da servire con hummus, formaggi o salse.",
-            image: "img/cracker_barbabietola.jpeg",
-            tags: ["snack", "healthy", "barbabietola", "cracker", "croccante"]
-        }, {
-            titolo: "Pane Fritto Dolce",
-            contenuto: "Il pane fritto dolce è una golosità semplice e irresistibile. Fette di pane vengono immerse in latte e uova, fritte e spolverate con zucchero e cannella, perfette per una merenda golosa.",
-            image: "img/pane_fritto_dolce.jpeg",
-            tags: ["dolce", "pane", "fritto", "tradizione", "facile"]
-        }, {
-            titolo: "Pasta Barbabietola",
-            contenuto: "Un primo piatto dal colore vivace e dal sapore delicato. La pasta alla barbabietola può essere preparata con una crema a base di barbabietola frullata, formaggio cremoso e noci, oppure direttamente con impasto alla barbabietola per un effetto scenografico. Perfetta per stupire a tavola!",
-            image: "img/pasta_barbabietola.jpeg",
-            tags: ["pasta", "barbabietola", "ricettacolorata", "primo", "cucinaitaliana"]
-        }, {
-            titolo: "Torta Paesana",
-            contenuto: "Un dolce tradizionale della cucina lombarda, nato per recuperare il pane raffermo. La torta paesana è un mix di latte, cacao, amaretti, pinoli e uvetta, che regala un sapore rustico e avvolgente. Perfetta per la colazione o come dessert casalingo.",
-            image: "img/torta_paesana.jpeg",
-            tags: ["tortapaesana", "dolcetradizionale", "riciclointelligente", "dessert", "cucinalombarda"]
-        }
-    ]
-
-    res.json(post)
-})
+app.use("/api/post", postsRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
